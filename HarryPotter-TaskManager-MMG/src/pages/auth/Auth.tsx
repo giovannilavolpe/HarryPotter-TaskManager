@@ -1,5 +1,5 @@
-import './ContextAuth'
-import { useUsernameStore} from './ContextAuth'
+import '../../context/ContextAuth'
+import { useUsernameStore} from '../../context/ContextAuth'
 
 function Auth() {
   const username = useUsernameStore((state) => state.username)
