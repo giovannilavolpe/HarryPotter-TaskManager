@@ -1,3 +1,5 @@
+import './App.css'
+import { CharacterCardList } from './components/Cards'
 import Header from "./components/Header";
 import { useUsernameStore } from "./context/ContextAuth";
 import Auth from "./pages/auth/Auth";
@@ -9,6 +11,7 @@ export default function App (){
         <Header/>
         <main>
             {!isLoggedIn && <Auth/>}
+            {isLoggedIn && <CharacterCardList/>}
         </main>
         </>
     )
