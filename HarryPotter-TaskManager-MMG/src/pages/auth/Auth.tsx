@@ -5,6 +5,7 @@ function Auth() {
   const username = useUsernameStore((state) => state.username)
   const setUsername = useUsernameStore((state) => state.setusername)
   const login = useUsernameStore((state) => state.login)
+  const error = useUsernameStore((state) => state.error);
 
 
   return(
@@ -16,6 +17,7 @@ function Auth() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
             />
+            {error && <p className="error">{error}</p>}
         <button onClick={login}>Log in</button>
 
 
