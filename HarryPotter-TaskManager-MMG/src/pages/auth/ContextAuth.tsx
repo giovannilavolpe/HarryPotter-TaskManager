@@ -26,7 +26,7 @@ export const useUsernameStore = create<UsernameStore>()(
         set((state) => {
           const username = state.username.trim();
 
-          if (!/^[A-Za-z]+$/.test(username)) {
+          if (!/^[A-Za-zÑñ]+$/.test(username)) {
             return {
               error: "Username can only contain letters.",
             };
