@@ -1,4 +1,4 @@
-import './App.css'
+
 import { CharacterCardList } from './components/Cards'
 import Header from "./components/Header";
 import { useUsernameStore } from "./context/ContextAuth";

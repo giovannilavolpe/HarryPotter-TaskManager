@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useCharacterStore } from '../context'
+import { useCharacterStore } from '../context/ContextCharacterData'
 
 export function CharacterCardList() {
   const { characters, isLoading, ObtainCharacters } = useCharacterStore()
