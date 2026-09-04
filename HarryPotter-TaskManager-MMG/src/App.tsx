@@ -1,11 +1,10 @@
 import './App.css'
-import ObtainData from './components/getDataAPI/GetDataAPI.tsx'
-
+import { CharacterCardList } from './components/Cards'
 function App() {
 
   return (
     <div>
-      <ObtainData/>
+      <CharacterCardList/>
     </div>
   )
 }
