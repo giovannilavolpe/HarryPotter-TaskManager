@@ -1,8 +1,8 @@
 
-import { CharacterCardList } from './components/Cards'
 import Header from "./components/Header";
 import { useUsernameStore } from "./context/ContextAuth";
 import Auth from "./pages/auth/Auth";
+import HomeScreen from './pages/homescreen/HomeScreen';
 
 export default function App (){
     const isLoggedIn = useUsernameStore((state) => state.isLoggedIn);
@@ -11,7 +11,7 @@ export default function App (){
         <Header/>
         <main>
             {!isLoggedIn && <Auth/>}
-            {isLoggedIn && <CharacterCardList/>}
+            {isLoggedIn && <HomeScreen/>}
         </main>
         </>
     )

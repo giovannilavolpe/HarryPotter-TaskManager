@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 
 interface Character {
+  house: string
   image: string
   id: string
   name: string
