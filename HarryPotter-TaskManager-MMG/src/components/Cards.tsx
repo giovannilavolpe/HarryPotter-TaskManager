@@ -2,18 +2,18 @@ import { useEffect } from 'react'
 import { useCharacterStore } from '../context/ContextCharacterData'
 
 export function CharacterCardList() {
-  const { characters, isLoading, obtainCharacters } = useCharacterStore()
+  const {filteredCharacters, isLoading, obtainCharacters } = useCharacterStore()
 
   useEffect(() => {
     obtainCharacters()
-  }, [obtainCharacters])
+  }, [])
 
   if (isLoading) return <p>Cargando datos..</p>
 
   return (
   <section style={{ background: 'black' }}>
     <ul style={{ listStyle: 'none', display: 'flex', flexWrap: 'wrap', padding: 0 }}>
-      {characters.map((character) => (
+      {filteredCharacters.map((character) => (
         <li key={character.id} style={{
           background: 'linear-gradient(#840303, #270707)',
           textAlign: 'center',

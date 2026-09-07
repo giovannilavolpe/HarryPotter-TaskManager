@@ -11,11 +11,14 @@ interface CharacterState {
   characters: Character[]
   isLoading: boolean
   obtainCharacters: () => void
+  filterCharacters: (search:any) => void
+  filteredCharacters: Character[]
 }
 
 export const useCharacterStore = create<CharacterState>((set) => ({
   characters: [],
   isLoading: false,
+  filteredCharacters: [],
   
   obtainCharacters: async () => {
 
@@ -25,19 +28,25 @@ export const useCharacterStore = create<CharacterState>((set) => ({
       const response = await fetch('https://hp-api.onrender.com/api/characters')
       const data: Character[] = await response.json()
       if (!response.ok) { 
-        throw new Error('Error ${response.status}: ${response.statusText}');
-       } 
+        throw new Error(`Error ${response.status}: ${response.statusText}`)
+      } 
       const allCharacters = data.filter(character =>
         character.image &&
         character.image.trim() !== ''
       )
 
-      set({ characters: allCharacters, isLoading: false })
+      set({ characters: allCharacters, filteredCharacters: allCharacters, isLoading: false })
       localStorage.setItem('allcharacters', JSON.stringify(allCharacters))
 
     } catch (error) {
       console.error('Error al cargar personajes:', error)
       set({ isLoading: false })
     }
-  }
+  },
+
+  filterCharacters: (search) => {
+    set({filteredCharacters: search})
+  },
+
+
 }))
