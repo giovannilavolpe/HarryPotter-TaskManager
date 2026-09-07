@@ -22,7 +22,7 @@ export const useCharacterStore = create<CharacterState>((set) => ({
     set({ isLoading: true })
 
     try {
-      const response = await fetch('https://hp-api.onrender.com/api/characters/house/gryffindor')
+      const response = await fetch('https://hp-api.onrender.com/api/characters')
       const data: Character[] = await response.json()
       set({ characters: data, isLoading: false })
       localStorage.setItem('gryffindor_characters', JSON.stringify(data));
