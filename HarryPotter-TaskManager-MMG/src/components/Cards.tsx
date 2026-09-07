@@ -11,51 +11,28 @@ export function CharacterCardList() {
   if (isLoading) return <p>Cargando datos..</p>
 
   return (
-    <section style={{ width: '100%', height: 'auto', backgroundColor: 'white' }}>
-
-      <ul style={{ 
-        listStyle: 'none',
-        display: 'flex',
-        flexWrap: 'wrap'
-        }}>
-
-        {characters.map((character) => (
-
+  <section style={{ background: 'black' }}>
+    <ul style={{ listStyle: 'none', display: 'flex', flexWrap: 'wrap', padding: 0 }}>
+      {characters.map((character) => (
         <li key={character.id} style={{
-          background: 'linear-gradient(to bottom, #840303, #270707)',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
+          background: 'linear-gradient(#840303, #270707)',
           textAlign: 'center',
-          alignItems: 'center',
-          width: 'auto',
-          height: 'auto',
-          maxWidth: '300px',
+          width: '240px',
           margin: '20px',
+          padding: '15px',
           borderRadius: '10px'
         }}>
-
-          <div>
-
           <img src={character.image} alt={character.name} style={{
-            width: 'auto',
-            height: 'auto',
-            maxHeight: '200px',
-            maxWidth: '150px',
-            minHeight: '100px',
-            minWidth: '75px'
+            width: '100%',
+            height: '280px',
+            objectFit: 'cover',
+            borderRadius: '5px'
           }}/>
-
-          <h3 style={{ color: 'white' }}>{character.name}</h3>
-
+          <h3 style={{ color: 'white', margin: '10px 0 5px' }}>{character.name}</h3>
           <span style={{ color: 'white' }}>{character.house}</span>
-
-          </div>
-
         </li>
-    ))}
-      </ul>
-    </section>
-
-  )
+      ))}
+    </ul>
+  </section>
+)
 }
