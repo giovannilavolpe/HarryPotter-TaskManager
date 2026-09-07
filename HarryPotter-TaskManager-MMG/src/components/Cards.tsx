@@ -2,11 +2,11 @@ import { useEffect } from 'react'
 import { useCharacterStore } from '../context/ContextCharacterData'
 
 export function CharacterCardList() {
-  const { characters, isLoading, ObtainCharacters } = useCharacterStore()
+  const { characters, isLoading, obtainCharacters } = useCharacterStore()
 
   useEffect(() => {
-    ObtainCharacters()
-  }, [ObtainCharacters])
+    obtainCharacters()
+  }, [obtainCharacters])
 
   if (isLoading) return <p>Cargando datos..</p>
 
@@ -29,7 +29,7 @@ export function CharacterCardList() {
             borderRadius: '5px'
           }}/>
           <h3 style={{ color: 'white', margin: '10px 0 5px' }}>{character.name}</h3>
-          <span style={{ color: 'white' }}>{character.house}</span>
+          <span style={{ color: 'yellow' }}>{character.house}</span>
         </li>
       ))}
     </ul>
