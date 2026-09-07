@@ -10,22 +10,30 @@ interface Character {
 interface CharacterState {
   characters: Character[]
   isLoading: boolean
-  ObtainCharacters: () => void
+  obtainCharacters: () => void
 }
 
 export const useCharacterStore = create<CharacterState>((set) => ({
   characters: [],
   isLoading: false,
   
-  ObtainCharacters: async () => {
+  obtainCharacters: async () => {
 
     set({ isLoading: true })
 
     try {
       const response = await fetch('https://hp-api.onrender.com/api/characters')
       const data: Character[] = await response.json()
-      set({ characters: data, isLoading: false })
-      localStorage.setItem('gryffindor_characters', JSON.stringify(data));
+      if (!response.ok) { 
+        throw new Error('Error ${response.status}: ${response.statusText}');
+       } 
+      const allCharacters = data.filter(character =>
+        character.image &&
+        character.image.trim() !== ''
+      )
+
+      set({ characters: allCharacters, isLoading: false })
+      localStorage.setItem('allcharacters', JSON.stringify(allCharacters))
 
     } catch (error) {
       console.error('Error al cargar personajes:', error)
