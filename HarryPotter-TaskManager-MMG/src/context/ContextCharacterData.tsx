@@ -13,12 +13,15 @@ interface CharacterState {
   obtainCharacters: () => void
   filterCharacters: (search:any) => void
   filteredCharacters: Character[]
+  favoriteHandler: (character:any) => void
+  favoriteCharacters: Character[]
 }
 
 export const useCharacterStore = create<CharacterState>((set) => ({
   characters: [],
   isLoading: false,
   filteredCharacters: [],
+  favoriteCharacters: [],
   
   obtainCharacters: async () => {
 
@@ -35,7 +38,7 @@ export const useCharacterStore = create<CharacterState>((set) => ({
         character.image.trim() !== ''
       )
 
-      set({ characters: allCharacters, filteredCharacters: allCharacters, isLoading: false })
+      set({ characters: allCharacters, filteredCharacters: allCharacters, favoriteCharacters: [], isLoading: false })
       localStorage.setItem('allcharacters', JSON.stringify(allCharacters))
 
     } catch (error) {
@@ -44,9 +47,27 @@ export const useCharacterStore = create<CharacterState>((set) => ({
     }
   },
 
-  filterCharacters: (search) => {
-    set({filteredCharacters: search})
+  filterCharacters: (searchResult) => {
+    set({filteredCharacters: searchResult})
   },
 
+  favoriteHandler: (character) => { set((state) => {
+      const favoritesString = localStorage.getItem('favorites')
+      const localFavorites = favoritesString ? JSON.parse(favoritesString) : []
+      if (localFavorites.some((fav: Character) => fav.id === character.id)){
+      const newFavorites = state.favoriteCharacters.filter(fav => fav.id !== character.id)
+           
+            const newFavoritesSting = JSON.stringify(newFavorites)
+            localStorage.setItem('favorites', newFavoritesSting)
+            return { favoriteCharacters: newFavorites }
+
+      } else {
+
+        const newFavorites = [localFavorites, character]
+              const newFavoritesString = JSON.stringify(newFavorites);
+              localStorage.setItem('favorites', newFavoritesString);
+              return { favoriteCharacters: newFavorites}
+      }
+    })},
 
 }))

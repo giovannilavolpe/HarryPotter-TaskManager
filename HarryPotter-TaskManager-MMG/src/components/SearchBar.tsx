@@ -3,7 +3,7 @@ import { useCharacterStore } from "../context/ContextCharacterData";
 
 
 export default function SearchBar (){
-    const {characters, filterCharacters} = useCharacterStore()
+    const {characters, filterCharacters, favoriteCharacters} = useCharacterStore()
     const [search, setSearch] = useState ("");
 
     function searchHandler (event: React.SubmitEvent<HTMLFormElement>){
@@ -19,6 +19,9 @@ export default function SearchBar (){
         <input onChange = {(e) => {setSearch(e.target.value)}} type="text" name="" id="" />
         <button type="submit">Search</button>
         </form>
+        <button onClick={() => filterCharacters(favoriteCharacters)}>Favorites</button>
+        <button onClick={() => filterCharacters(characters)}>Clear Filters</button>
+
         </>
     )
 }

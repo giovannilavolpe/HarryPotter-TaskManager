@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useCharacterStore } from '../context/ContextCharacterData'
 
 export function CharacterCardList() {
-  const {filteredCharacters, isLoading, obtainCharacters } = useCharacterStore()
+  const {filteredCharacters, isLoading, obtainCharacters, favoriteHandler} = useCharacterStore()
 
   useEffect(() => {
     obtainCharacters()
@@ -30,6 +30,7 @@ export function CharacterCardList() {
           }}/>
           <h3 style={{ color: 'white', margin: '10px 0 5px' }}>{character.name}</h3>
           <span style={{ color: 'yellow' }}>{character.house}</span>
+          <button onClick={() => favoriteHandler(character)}>⭐</button>
         </li>
       ))}
     </ul>
