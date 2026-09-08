@@ -5,7 +5,7 @@ function Auth() {
   const email = useAccountStore((state) => state.email)
   const setEmail = useAccountStore((state) => state.setEmail)
   const password = useAccountStore((state) => state.password)
-  const setPassword = useAccountStore((state) => state.setEmail)
+  const setPassword = useAccountStore((state) => state.setPassword)
   const login = useAccountStore((state) => state.login)
   const error = useAccountStore((state) => state.error);
 
