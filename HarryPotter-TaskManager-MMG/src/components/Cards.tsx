@@ -15,9 +15,7 @@ export function CharacterCardList() {
 
   return (
   <section className= {backgroundTheme} style={{ background: 'theme' }}>
-    <button onClick={resetCharacters} style={{ margin: '20px', padding: '10px 20px', background: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
-      Reset Characters
-    </button>
+
     <ul style={{ listStyle: 'none', display: 'flex', flexWrap: 'wrap', padding: 0 }}>
 
       {filteredCharacters.map((character) => (
