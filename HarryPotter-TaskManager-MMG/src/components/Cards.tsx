@@ -2,18 +2,18 @@ import { useEffect } from 'react'
 import { useCharacterStore } from '../context/ContextCharacterData'
 
 export function CharacterCardList() {
-  const { characters, isLoading, obtainCharacters } = useCharacterStore()
+  const {filteredCharacters, isLoading, obtainCharacters, favoriteHandler} = useCharacterStore()
 
   useEffect(() => {
     obtainCharacters()
-  }, [obtainCharacters])
+  }, [])
 
   if (isLoading) return <p>Cargando datos..</p>
 
   return (
   <section style={{ background: 'black' }}>
     <ul style={{ listStyle: 'none', display: 'flex', flexWrap: 'wrap', padding: 0 }}>
-      {characters.map((character) => (
+      {filteredCharacters.map((character) => (
         <li key={character.id} style={{
           background: 'linear-gradient(#840303, #270707)',
           textAlign: 'center',
@@ -30,6 +30,7 @@ export function CharacterCardList() {
           }}/>
           <h3 style={{ color: 'white', margin: '10px 0 5px' }}>{character.name}</h3>
           <span style={{ color: 'yellow' }}>{character.house}</span>
+          <button onClick={() => favoriteHandler(character)}>⭐</button>
         </li>
       ))}
     </ul>
