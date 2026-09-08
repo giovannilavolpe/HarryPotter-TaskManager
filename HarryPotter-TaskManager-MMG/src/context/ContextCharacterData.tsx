@@ -48,26 +48,27 @@ export const useCharacterStore = create<CharacterState>((set) => ({
   },
 
   filterCharacters: (searchResult) => {
-    set({filteredCharacters: searchResult})
+    if (searchResult.length === 0){
+      alert ("No characters match your search");
+    } else {
+    set({filteredCharacters: searchResult})      
+    }
   },
 
-  favoriteHandler: (character) => { set((state) => {
+  favoriteHandler: (character) => { set(() => {
       const favoritesString = localStorage.getItem('favorites')
-      const localFavorites = favoritesString ? JSON.parse(favoritesString) : []
-      if (localFavorites.some((fav: Character) => fav.id === character.id)){
-      const newFavorites = state.favoriteCharacters.filter(fav => fav.id !== character.id)
-           
-            const newFavoritesSting = JSON.stringify(newFavorites)
-            localStorage.setItem('favorites', newFavoritesSting)
-            return { favoriteCharacters: newFavorites }
-
-      } else {
-
-        const newFavorites = [localFavorites, character]
-              const newFavoritesString = JSON.stringify(newFavorites);
-              localStorage.setItem('favorites', newFavoritesString);
-              return { favoriteCharacters: newFavorites}
+      const localFavorites: Character[] = favoritesString ? JSON.parse(favoritesString) : []
+      
+      if (localFavorites.some((favorite: Character) => favorite.id === character.id)){
+        const newFavorites = localFavorites.filter(favorite => favorite.id !== character.id)
+        localStorage.setItem('favorites', JSON.stringify(newFavorites))
+        return { favoriteCharacters: newFavorites }
       }
+
+      const newFavorites = [...localFavorites, character]
+      localStorage.setItem('favorites', JSON.stringify(newFavorites))
+      return { favoriteCharacters: newFavorites }
     })},
 
 }))
+ 
