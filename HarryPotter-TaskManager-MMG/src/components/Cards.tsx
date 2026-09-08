@@ -3,7 +3,7 @@ import { useCharacterStore } from '../context/ContextCharacterData'
 import { Link } from 'react-router-dom'
 
 export function CharacterCardList() {
-  const { characters, isLoading, obtainCharacters } = useCharacterStore()
+  const { characters, isLoading, obtainCharacters, resetCharacters } = useCharacterStore()
 
   useEffect(() => {
     obtainCharacters()
@@ -13,9 +13,12 @@ export function CharacterCardList() {
 
   return (
   <section style={{ background: 'black' }}>
+    <button onClick={resetCharacters} style={{ margin: '20px', padding: '10px 20px', background: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+      Reset Characters
+    </button>
     <ul style={{ listStyle: 'none', display: 'flex', flexWrap: 'wrap', padding: 0 }}>
       {characters.map((character) => (
-        <Link to={`/character/${character.id}`} key={character.id}>
+        <Link to={`/character/${character.id}`} key={character.id} style={{ textDecoration: 'none' }}>
         <li key={character.id} style={{
           background: 'linear-gradient(#840303, #270707)',
           textAlign: 'center',
@@ -31,7 +34,7 @@ export function CharacterCardList() {
             objectFit: 'cover',
             borderRadius: '5px'
           }}/>
-          <h3 style={{ color: 'white', margin: '10px 0 5px' }}>{character.name}</h3>
+          <h3 style={{ color: 'white', margin: '10px 0 5px'}}>{character.name}</h3>
           <span style={{ color: 'yellow' }}>{character.house}</span>
         </li>
         </Link>
