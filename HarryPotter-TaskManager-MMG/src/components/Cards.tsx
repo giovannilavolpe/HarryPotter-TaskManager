@@ -3,7 +3,7 @@ import { useCharacterStore } from '../context/ContextCharacterData'
 import { Link } from 'react-router-dom'
 
 export function CharacterCardList() {
-  const {filteredCharacters, isLoading, obtainCharacters, favoriteHandler} = useCharacterStore()
+  const {characters, filteredCharacters, isLoading, obtainCharacters, resetCharacters, favoriteHandler} = useCharacterStore()
 
   useEffect(() => {
     obtainCharacters()
@@ -13,10 +13,12 @@ export function CharacterCardList() {
 
   return (
   <section style={{ background: 'black' }}>
+    <button onClick={resetCharacters} style={{ margin: '20px', padding: '10px 20px', background: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+      Reset Characters
+    </button>
     <ul style={{ listStyle: 'none', display: 'flex', flexWrap: 'wrap', padding: 0 }}>
 
       {filteredCharacters.map((character) => (
-        <Link to={`/character/${character.id}`} key={character.id}>
         <li key={character.id} style={{
           background: 'linear-gradient(#840303, #270707)',
           textAlign: 'center',
@@ -32,11 +34,13 @@ export function CharacterCardList() {
             objectFit: 'cover',
             borderRadius: '5px'
           }}/>
-          <h3 style={{ color: 'white', margin: '10px 0 5px' }}>{character.name}</h3>
+          <h3 style={{ color: 'white', margin: '10px 0 5px'}}>{character.name}</h3>
           <span style={{ color: 'yellow' }}>{character.house}</span>
           <button onClick={() => favoriteHandler(character)}>⭐</button>
+          <Link to={`/character/${character.id}`} key={character.id}>
+          <button>entrar a detalles</button>
+          </Link>
         </li>
-        </Link>
       ))}
     </ul>
   </section>

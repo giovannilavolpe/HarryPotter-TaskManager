@@ -4,23 +4,23 @@ import { useCharacterStore } from '../context/ContextCharacterData'
 
 
 export function CharacterDetailsCardList() {
-  const { id } = useParams() 
-  
-  const { characters } = useCharacterStore()
+  const { id } = useParams()
+
+  const { characters, removeCharacter } = useCharacterStore()
 
   const character = characters.find((character) => String(character.id) === String(id))
 
   if (!character) {
     return <p>Personaje no encontrado</p>
   }
-    
+
   return (
     <section style={{ background: 'black', color: 'white', minHeight: '100vh', padding: '40px' }}>
-      <Link to="/" style={{ color: 'yellow', textDecoration: 'none', display: 'inline-block', marginBottom: '20px' }}>
+      <Link to="/" style={{ color: 'white', textDecoration: 'none', display: 'flex', marginBottom: '20px'}}>
         Volver al menu principal
       </Link>
 
-      <div style={{ display: 'flex', gap: '30px', background: '#1c1c1c', padding: '30px', borderRadius: '15px' }}>
+      <div style={{ display: 'flex', gap: '30px', background: '#1C1C1C', padding: '30px', borderRadius: '15px' }}>
         <img src={character.image} alt={character.name} style={{ width: '250px', borderRadius: '10px' }} />
         <div>
           <h1 style={{ margin: 0 }}>{character.name}</h1>
@@ -30,7 +30,10 @@ export function CharacterDetailsCardList() {
                 <span>Date of birth: {character.dateOfBirth}</span>
                 <span>Ancestry: {character.ancestry}</span>
           </div>
-        </div> 
+          <Link to="/" onClick={() => removeCharacter(character.id)} style={{ display: 'flex', textDecoration: 'none', justifyContent: 'center', backgroundColor: 'red', color: 'black', borderRadius: '5px', marginTop: '20px', width: '40%'}}>
+            Eliminar personaje
+          </Link>
+        </div>
       </div>
     </section>
   )

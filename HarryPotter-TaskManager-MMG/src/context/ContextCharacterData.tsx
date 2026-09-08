@@ -5,7 +5,7 @@ interface Character {
   image: string
   id: string
   name: string
-  alternate_names: string
+  alternate_names: string[]
   dateOfBirth: string
   gender: string
   ancestry: string
@@ -15,21 +15,45 @@ interface CharacterState {
   characters: Character[]
   isLoading: boolean
   obtainCharacters: () => void
+  resetCharacters: () => void
+  removeCharacter: (id: string) => void
   filterCharacters: (search:any) => void
   filteredCharacters: Character[]
   favoriteHandler: (character:any) => void
   favoriteCharacters: Character[]
 }
 
-export const useCharacterStore = create<CharacterState>((set) => ({
+export const useCharacterStore = create<CharacterState>((set, get) => ({
   characters: [],
   isLoading: false,
+
+  resetCharacters: () => {
+    localStorage.removeItem('allcharacters')
+    get().obtainCharacters()
+  },
+
+  removeCharacter: (id) => set((state) => {
+  const updatedCharacters = state.characters.filter((character) => character.id !== id);
+  localStorage.setItem('allcharacters', JSON.stringify(updatedCharacters));
+  const updatedFilteredCharacters = state.filteredCharacters.filter((character) => character.id !== id);
+  return { 
+    characters: updatedCharacters,
+    filteredCharacters: updatedFilteredCharacters
+  };
+  }),
+
   filteredCharacters: [],
   favoriteCharacters: [],
   
   obtainCharacters: async () => {
 
-    set({ isLoading: true })
+    set({ isLoading: true,})
+
+    const savedCharacters = localStorage.getItem('allcharacters')
+    if (savedCharacters) {
+      set({ characters: JSON.parse(savedCharacters), filteredCharacters: JSON.parse(savedCharacters) ,isLoading: false })
+      return
+    }
 
     try {
       const response = await fetch('https://hp-api.onrender.com/api/characters')
@@ -42,7 +66,7 @@ export const useCharacterStore = create<CharacterState>((set) => ({
         character.image.trim() !== ''
       )
 
-      set({ characters: allCharacters, filteredCharacters: allCharacters, favoriteCharacters: [], isLoading: false })
+      set({ characters: allCharacters, filteredCharacters: allCharacters, isLoading: false })
       localStorage.setItem('allcharacters', JSON.stringify(allCharacters))
 
     } catch (error) {
@@ -75,4 +99,3 @@ export const useCharacterStore = create<CharacterState>((set) => ({
     })},
 
 }))
- 
