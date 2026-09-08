@@ -9,16 +9,39 @@ function Auth() {
 
 
   return(
-    <div>
-        <h2>Log in to get Started</h2>
+    <div style={{
+      background: 'linear-gradient(#000000, #840303)',
+      textAlign: 'center',
+      height: '95vh'
+    }}>
+        <h2 style={{
+          color: 'white',
+          fontSize: '40px',
+          fontFamily: 'cursive',
+          letterSpacing: '5px'
+        }}>Log in to get started</h2>
         <input
                 type="text"
-                placeholder="username"
+                placeholder="Ingrese su nombre"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                style={{
+                  border: 'none',
+                  borderRadius: '5px',
+                  boxShadow: '0px 1px 8px rgba(255, 255, 255, 0.6)',
+                  width: '250px',
+                  height: '30px'
+                }}
+
             />
-            {error && <p className="error">{error}</p>}
-        <button onClick={login}>Log in</button>
+            {error && <p style={{ color: 'white' }}>{error}</p>}
+        <button onClick={login} style={{
+                  border: 'none',
+                  borderRadius: '5px',
+                  boxShadow: '0px 1px 8px rgba(255, 255, 255, 0.6)',
+                  width: '80px',
+                  height: '32px'
+                }}>Log in</button>
 
 
     </div>

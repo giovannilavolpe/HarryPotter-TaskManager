@@ -5,6 +5,10 @@ interface Character {
   image: string
   id: string
   name: string
+  alternate_names: string
+  dateOfBirth: string
+  gender: string
+  ancestry: string
 }
 
 interface CharacterState {
