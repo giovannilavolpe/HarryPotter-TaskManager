@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { useCharacterStore } from '../context/ContextCharacterData'
+import { useSettingStore } from '../context/ContextSettings'
 
 
 
@@ -9,18 +10,19 @@ export function CharacterDetailsCardList() {
   const { characters, removeCharacter } = useCharacterStore()
 
   const character = characters.find((character) => String(character.id) === String(id))
+  const {backgroundTheme, borderTheme} = useSettingStore()
 
   if (!character) {
     return <p>Personaje no encontrado</p>
   }
 
   return (
-    <section style={{ background: 'black', color: 'white', minHeight: '100vh', padding: '40px' }}>
-      <Link to="/" style={{ color: 'white', textDecoration: 'none', display: 'flex', marginBottom: '20px'}}>
+    <section className = {backgroundTheme} style={{ minHeight: '100vh', padding: '40px' }}>
+      <Link to="/" style={{ color: 'yellow', textDecoration: 'none', display: 'inline-block', marginBottom: '20px' }}>
         Volver al menu principal
       </Link>
 
-      <div style={{ display: 'flex', gap: '30px', background: '#1C1C1C', padding: '30px', borderRadius: '15px' }}>
+      <div className = {borderTheme} style={{ display: 'flex', gap: '30px', padding: '30px', borderRadius: '15px' }}>
         <img src={character.image} alt={character.name} style={{ width: '250px', borderRadius: '10px' }} />
         <div>
           <h1 style={{ margin: 0 }}>{character.name}</h1>

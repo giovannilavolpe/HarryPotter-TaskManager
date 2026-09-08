@@ -1,8 +1,10 @@
 import { useEffect } from 'react'
 import { useCharacterStore } from '../context/ContextCharacterData'
 import { Link } from 'react-router-dom'
+import { useSettingStore } from '../context/ContextSettings'
 
 export function CharacterCardList() {
+  const {backgroundTheme, borderTheme} = useSettingStore()
   const {filteredCharacters, isLoading, obtainCharacters, resetCharacters, favoriteHandler} = useCharacterStore()
 
   useEffect(() => {
@@ -12,15 +14,14 @@ export function CharacterCardList() {
   if (isLoading) return <p>Cargando datos..</p>
 
   return (
-  <section style={{ background: 'black' }}>
+  <section className= {backgroundTheme} style={{ background: 'theme' }}>
     <button onClick={resetCharacters} style={{ margin: '20px', padding: '10px 20px', background: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
       Reset Characters
     </button>
     <ul style={{ listStyle: 'none', display: 'flex', flexWrap: 'wrap', padding: 0 }}>
 
       {filteredCharacters.map((character) => (
-        <li key={character.id} style={{
-          background: 'linear-gradient(#840303, #270707)',
+        <li key={character.id} className = {borderTheme} style={{
           textAlign: 'center',
           width: '240px',
           margin: '20px',
