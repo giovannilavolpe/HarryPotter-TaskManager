@@ -3,7 +3,7 @@ import { useCharacterStore } from '../context/ContextCharacterData'
 import { Link } from 'react-router-dom'
 
 export function CharacterCardList() {
-  const {characters, filteredCharacters, isLoading, obtainCharacters, resetCharacters, favoriteHandler} = useCharacterStore()
+  const {filteredCharacters, isLoading, obtainCharacters, resetCharacters, favoriteHandler} = useCharacterStore()
 
   useEffect(() => {
     obtainCharacters()
