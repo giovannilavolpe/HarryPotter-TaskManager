@@ -34,12 +34,18 @@ export function CharacterCardList() {
             objectFit: 'cover',
             borderRadius: '5px'
           }}/>
-          <h3 style={{ color: 'white', margin: '10px 0 5px'}}>{character.name}</h3>
-          <span style={{ color: 'yellow' }}>{character.house}</span>
-          <button onClick={() => favoriteHandler(character)}>⭐</button>
-          <Link to={`/character/${character.id}`} key={character.id}>
-          <button>entrar a detalles</button>
-          </Link>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <h3 style={{ color: 'white', margin: '10px 0 5px'}}>{character.name}</h3>
+            <span style={{ color: 'yellow' }}>{character.house}</span>
+            <div>
+              <Link to={`/character/${character.id}`} key={character.id}>
+                <button style={{ border: 'none', borderRadius: '5px', marginTop: "10px", backgroundColor: '#E0E0E0'}}>
+                  Mas detalles
+                </button>
+              </Link>
+              <button onClick={() => favoriteHandler(character)} style={{ backgroundColor: 'transparent', border: '1px, yellow, solid', marginLeft: '10px', borderRadius: '5px'}}>⭐</button>
+            </div>
+          </div>
         </li>
       ))}
     </ul>
