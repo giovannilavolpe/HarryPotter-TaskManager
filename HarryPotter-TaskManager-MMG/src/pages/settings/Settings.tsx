@@ -6,7 +6,6 @@ import {
 
 
 const borderThemes: BorderTheme[] = [
-    "default",
     "gryffindor",
     "slytherin",
     "hufflepuff",
@@ -33,48 +32,57 @@ function Settings() {
         setBorderTheme ("gryffindor")
     }
     return (
-        <div >
-            <h3>Background Theme</h3>
-            <div style={{ display: "flex", flexDirection: "row", gap: "20px", width: "100%", justifyContent: "space-evenly" }}>
+        <div className="{th}" style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', flexWrap: 'wrap', marginTop: '100px'}}>
 
-                <button
-                    key={"light"}
-                    type="button"
-                    onClick={() => setBackgroundTheme("light")}
-                    style={{backgroundColor: "white", color: "black", width: "150px", height: "30px", borderRadius: "5px", fontSize: "20px"}}
-                >
-                    Lumus!
-                </button>
-                                <button
-                    key={"dark"}
-                    type="button"
-                    onClick={() => setBackgroundTheme("dark")}
-                    style={{backgroundColor: "black", color: "white", width: "150px", height: "30px", borderRadius: "5px", fontSize: "20px"}}
-                >
-                    Nox!
-                </button>
+            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', gap: '20%', textAlign: 'center', fontFamily: 'fantasy'}}>
+
+                <div style={{ width: 'auto', height: 'auto', border: '1px, solid, grey', borderRadius: '20px', padding: '60px'}}>
+                    <h3 style={{ fontSize: '30px' }}>Background Theme</h3>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "20px", width: "100%", justifyContent: "space-evenly" }}>
+                        <button
+                            key={"light"}
+                            type="button"
+                            onClick={() => setBackgroundTheme("light")}
+                            style={{backgroundColor: "white", color: "black", width: "100%", height: "30px", borderRadius: "5px", fontSize: "20px"}}
+                            >
+                            Lumus  ☀️
+                        </button>
+                        <button
+                            key={"dark"}
+                            type="button"
+                            onClick={() => setBackgroundTheme("dark")}
+                            style={{backgroundColor: "black", color: "white", width: "100%", height: "30px", borderRadius: "5px", fontSize: "20px"}}
+                            >
+                            Nox  🌙
+                        </button>
+                    </div>
+                </div>
+
+                <div style={{ width: 'auto', height: 'auto', border: '1px, solid, grey', borderRadius: '20px', padding: '60px'}}>
+                    <h3 style={{ fontSize: '30px' }}>Border Theme</h3>
+
+                    <div style={{ display: "flex", flexDirection: "column", gap: "20px", width: "100%", justifyContent: "space-evenly" }}>
+                    {borderThemes.map((theme) => (
+                        <button
+                            key={theme}
+                            type="button"
+                            onClick={() => setBorderTheme(theme)}
+                            className= {theme}
+                            style={{width: "100%", height: "30px", borderRadius: "5px", fontSize: "20px"}}
+                            >
+                                {theme}
+                        </button>
+                    ))}
+                    </div>
+                </div>
+
             </div>
 
-            <h3>Border Theme</h3>
 
-            <div style={{ display: "flex", flexDirection: "row", gap: "20px", width: "100%", justifyContent: "space-evenly" }}>
-            {borderThemes.map((theme) => (
-                <button
-                key={theme}
-                type="button"
-                onClick={() => setBorderTheme(theme)}
-                className= {theme}
-                style={{width: "150px", height: "30px", borderRadius: "5px", fontSize: "20px"}}
-                >
-                    {theme}
+            <div style={{ width: "100%", display: "flex", justifyContent: "center"}}> 
+                <button type="button" onClick={() => logoutHandler()} style={{ borderRadius: "10px", width: "150px", height: "50px", fontSize: "20px", backgroundColor: '#a90101', marginBottom: '250px', marginTop: '100px'}}>
+                    Log out
                 </button>
-            ))}
-            </div>
-
-            <div style={{ width: "100%", display: "flex", justifyContent: "center", marginTop: "60px" }}> 
-            <button className = {borderTheme} type="button" onClick={() => logoutHandler()} style={{ borderRadius: "5px", width: "150px", height: "50px", fontSize: "20px", marginBottom: "650px"}}>
-                Log out
-            </button>
             </div>
 
         </div>
