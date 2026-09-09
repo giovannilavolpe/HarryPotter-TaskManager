@@ -35,8 +35,8 @@ function Auth() {
 
         }}>
         <input  className= {backgroundTheme}
-                type="text"
-                placeholder="username"
+                type="email"
+                placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 style={{
@@ -47,8 +47,8 @@ function Auth() {
             />
             <input
                 className= {backgroundTheme}
-                type="text"
-                placeholder="password"
+                type="password"
+                placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 style={{
