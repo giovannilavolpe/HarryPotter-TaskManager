@@ -90,12 +90,16 @@ export const useCharacterStore = create<CharacterState>((set, get) => ({
       if (localFavorites.some((favorite: Character) => favorite.id === character.id)){
         const newFavorites = localFavorites.filter(favorite => favorite.id !== character.id)
         localStorage.setItem('favorites', JSON.stringify(newFavorites))
+        alert (character.name + ' has been removed from favorites');
         return { favoriteCharacters: newFavorites }
       }
 
       const newFavorites = [...localFavorites, character]
       localStorage.setItem('favorites', JSON.stringify(newFavorites))
+      alert (character.name + ' has been added to favorites');
       return { favoriteCharacters: newFavorites }
+
+
     })},
 
 }))
