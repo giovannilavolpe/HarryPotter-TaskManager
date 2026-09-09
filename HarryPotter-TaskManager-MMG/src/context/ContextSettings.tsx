@@ -6,7 +6,6 @@ export type BorderTheme =
   | "slytherin"
   | "hufflepuff"
   | "ravenclaw"
-  | "default";
 
 export type BackgroundTheme =
   | "light"
@@ -29,7 +28,7 @@ export const useSettingStore = create<SettingStore>()(
         set({ backgroundTheme: theme });
       },
 
-      borderTheme: "default",
+      borderTheme: "gryffindor",
 
       setBorderTheme: (theme) => {
         set({ borderTheme: theme });
