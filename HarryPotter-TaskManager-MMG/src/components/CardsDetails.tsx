@@ -19,7 +19,7 @@ export function CharacterDetailsCardList() {
   return (
     <section className = {backgroundTheme} style={{ minHeight: '100vh', padding: '40px' }}>
       <Link to="/" style={{ color: 'yellow', textDecoration: 'none', display: 'inline-block', marginBottom: '20px' }}>
-        Volver al menu principal
+        Back to home
       </Link>
 
       <div className = {borderTheme} style={{ display: 'flex', gap: '30px', padding: '30px', borderRadius: '15px' }}>
@@ -27,13 +27,13 @@ export function CharacterDetailsCardList() {
         <div>
           <h1 style={{ margin: 0 }}>{character.name}</h1>
           <h3 style={{ color: 'yellow' }}>{character.house}</h3>
-          <h4>Otros nombres: {character.alternate_names[0]} - {character.alternate_names[1]} - {character.alternate_names[2]}</h4>
+          <h4>Other names: {character.alternate_names[0]} - {character.alternate_names[1]} - {character.alternate_names[2]}</h4>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5%' }}>
                 <span>Date of birth: {character.dateOfBirth}</span>
                 <span>Ancestry: {character.ancestry}</span>
           </div>
           <Link to="/" onClick={() => removeCharacter(character.id)} style={{ display: 'flex', textDecoration: 'none', justifyContent: 'center', backgroundColor: 'red', color: 'black', borderRadius: '5px', marginTop: '20px', width: '40%'}}>
-            Eliminar personaje
+            Delete Character
           </Link>
         </div>
       </div>

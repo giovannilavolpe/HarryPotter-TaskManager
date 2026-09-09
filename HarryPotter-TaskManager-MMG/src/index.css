@@ -1,8 +1,6 @@
 body {
   margin: 0;
-}
-#containterAll {
-
+  background-color: black;
 }
 .dark {
   background-color: black;

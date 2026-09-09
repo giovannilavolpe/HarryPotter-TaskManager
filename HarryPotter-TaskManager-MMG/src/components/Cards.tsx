@@ -38,8 +38,8 @@ export function CharacterCardList() {
             <span style={{ color: 'yellow' }}>{character.house}</span>
             <div>
               <Link to={`/character/${character.id}`} key={character.id}>
-                <button style={{ border: 'none', borderRadius: '5px', marginTop: "10px", backgroundColor: '#E0E0E0'}}>
-                  Mas detalles
+                <button className = {backgroundTheme} style={{ border: 'none', borderRadius: '5px', marginTop: "10px"}}>
+                  Details
                 </button>
               </Link>
               <button onClick={() => favoriteHandler(character)} style={{ backgroundColor: 'transparent', border: '1px, yellow, solid', marginLeft: '10px', borderRadius: '5px'}}>⭐</button>
