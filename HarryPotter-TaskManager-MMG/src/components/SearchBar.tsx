@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useCharacterStore } from "../context/ContextCharacterData";
 import { useSettingStore } from "../context/ContextSettings";
-import { height } from "@fortawesome/free-solid-svg-icons/fa0";
+
 
 
 export default function SearchBar (){
