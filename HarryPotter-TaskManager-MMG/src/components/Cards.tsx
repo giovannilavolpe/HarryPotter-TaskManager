@@ -5,7 +5,7 @@ import { useSettingStore } from '../context/ContextSettings'
 
 export function CharacterCardList() {
   const {backgroundTheme, borderTheme} = useSettingStore()
-  const {filteredCharacters, isLoading, obtainCharacters, resetCharacters, favoriteHandler} = useCharacterStore()
+  const {filteredCharacters, isLoading, obtainCharacters, favoriteHandler} = useCharacterStore()
 
   useEffect(() => {
     obtainCharacters()
@@ -14,7 +14,7 @@ export function CharacterCardList() {
   if (isLoading) return <p>Cargando datos..</p>
 
   return (
-  <section className= {backgroundTheme} style={{ background: 'theme' }}>
+  <section className= {backgroundTheme} style={{ background: 'theme' }}> 
 
     <ul style={{ listStyle: 'none', display: 'flex', flexWrap: 'wrap', padding: 0 }}>
 

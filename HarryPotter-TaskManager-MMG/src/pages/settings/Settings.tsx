@@ -19,9 +19,6 @@ function Settings() {
         (state) => state.setBackgroundTheme
     );
 
-    const borderTheme = useSettingStore(
-        (state) => state.borderTheme
-    );
     const setBorderTheme = useSettingStore(
         (state) => state.setBorderTheme
     );
