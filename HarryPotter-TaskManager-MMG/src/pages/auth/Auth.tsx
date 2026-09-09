@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import '../../context/ContextAuth'
 import { useAccountStore} from '../../context/ContextAuth'
 import { useSettingStore } from '../../context/ContextSettings'
@@ -10,7 +11,12 @@ function Auth() {
   const login = useAccountStore((state) => state.login)
   const error = useAccountStore((state) => state.error);
   const {backgroundTheme, borderTheme} = useSettingStore();
+  const userNameInput = useRef<HTMLInputElement | null>(null);
 
+  function loginHandler() {
+    login();
+    userNameInput.current?.focus();
+  }
 
   return(
     <div style={{
@@ -40,6 +46,7 @@ function Auth() {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                ref = {userNameInput}
                 style={{
                   margin: "1rem 0rem",
                   padding: "1rem",
@@ -59,7 +66,7 @@ function Auth() {
                 }}
             />
             {error && <p style={{ color: 'white' }}>{error}</p>}
-        <button onClick={login} 
+        <button onClick={() => loginHandler()} 
                 className= {borderTheme}
                 style={{
                   border: 'none',
