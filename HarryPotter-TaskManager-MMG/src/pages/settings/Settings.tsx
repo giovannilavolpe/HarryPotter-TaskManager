@@ -1,4 +1,4 @@
-import { useUsernameStore } from "../../context/ContextAuth";
+import { useAccountStore } from "../../context/ContextAuth";
 import {
     useSettingStore,
     type BackgroundTheme,
@@ -19,7 +19,7 @@ const borderThemes: BorderTheme[] = [
 ];
 
 function Settings() {
-    const logout = useUsernameStore((state) => state.logout);
+    const logout = useAccountStore((state) => state.logout);
 
     const backgroundTheme = useSettingStore(
         (state) => state.backgroundTheme
