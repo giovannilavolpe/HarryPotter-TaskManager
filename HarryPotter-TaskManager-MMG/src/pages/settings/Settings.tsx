@@ -1,14 +1,9 @@
 import { useAccountStore } from "../../context/ContextAuth";
 import {
     useSettingStore,
-    type BackgroundTheme,
     type BorderTheme,
 } from "../../context/ContextSettings";
 
-const backgroundThemes: BackgroundTheme[] = [
-    "light",
-    "dark",
-];
 
 const borderThemes: BorderTheme[] = [
     "default",
@@ -21,9 +16,6 @@ const borderThemes: BorderTheme[] = [
 function Settings() {
     const logout = useAccountStore((state) => state.logout);
 
-    const backgroundTheme = useSettingStore(
-        (state) => state.backgroundTheme
-    );
     const setBackgroundTheme = useSettingStore(
         (state) => state.setBackgroundTheme
     );
@@ -35,6 +27,11 @@ function Settings() {
         (state) => state.setBorderTheme
     );
 
+    function logoutHandler (){
+        logout();
+        setBackgroundTheme ("dark");
+        setBorderTheme ("gryffindor")
+    }
     return (
         <div >
             <h3>Background Theme</h3>
@@ -75,7 +72,7 @@ function Settings() {
             </div>
 
             <div style={{ width: "100%", display: "flex", justifyContent: "center", marginTop: "60px" }}> 
-            <button className = {borderTheme} type="button" onClick={logout} style={{ borderRadius: "5px", width: "150px", height: "50px", fontSize: "20px", marginBottom: "650px"}}>
+            <button className = {borderTheme} type="button" onClick={() => logoutHandler()} style={{ borderRadius: "5px", width: "150px", height: "50px", fontSize: "20px", marginBottom: "650px"}}>
                 Log out
             </button>
             </div>

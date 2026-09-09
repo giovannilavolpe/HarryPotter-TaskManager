@@ -17,7 +17,7 @@ function Auth() {
       background: 'linear-gradient(#000000, #840303)',
       height: '95vh',
       display: "flex",
-      flexDirection: "row",
+      flexDirection: "column",
       alignItems: "center",
       justifyContent: "center"
 
@@ -28,10 +28,11 @@ function Auth() {
           fontFamily: 'cursive',
           letterSpacing: '5px'
         }}>Log in to get started</h2>
-        <div style={{
-          display: "flex",
-          flexDirection:"column",
-          alignSelf: 'center',
+          <div style={{
+            display: "flex",
+            flexDirection:"column",
+            alignSelf: 'center',
+            alignItems: "center"
 
         }}>
         <input  className= {backgroundTheme}
@@ -45,9 +46,9 @@ function Auth() {
                   borderRadius: "1rem"
                 }}
             />
-            <input
+        <input
                 className= {backgroundTheme}
-                type="password"
+                type="password" 
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -68,7 +69,8 @@ function Auth() {
                   height: '32px',
                   margin: "1rem 0rem",
                 }}>Log in</button>
-                </div>
+          
+          </div>
 
 
     </div>

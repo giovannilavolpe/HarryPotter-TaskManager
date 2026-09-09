@@ -33,15 +33,15 @@ export const useAccountStore = create<UsernameStore>()(
       users: [
         {
           email: "test@gmail.com",
-          password: "contraseña",
+          password: "password",
         },
         {
           email: "admin@yahoo.com.ar",
           password: "admin123",
         },
         {
-          email: "usuariotest@gmail.com",
-          password: "usuario",
+          email: "usertest@gmail.com",
+          password: "user",
         },
       ],
 
