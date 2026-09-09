@@ -1,63 +1,86 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+interface User {
+  email: string;
+  password: string;
+}
+
 interface UsernameStore {
-  username: string;
+  email: string;
+  password: string;
   isLoggedIn: boolean;
-
   error: string;
+  users: User[];
 
-  setusername: (username: string) => void;
-  login: () => void;
+  setEmail: (email: string) => void;
+  setPassword: (password: string) => void;
+
+  login: () => boolean;
   logout: () => void;
 }
 
-export const useUsernameStore = create<UsernameStore>()(
+export const useAccountStore = create<UsernameStore>()(
   persist(
-    (set) => ({
-      username: "",
+    (set, get) => ({
+      email: "",
+      password: "",
       isLoggedIn: false,
       error: "",
-      setusername: (username) => {
-        set({ username });
-      },
+
+
+      //all the valid accounts
+      users: [
+        {
+          email: "test@gmail.com",
+          password: "contraseña",
+        },
+        {
+          email: "admin@yahoo.com.ar",
+          password: "admin123",
+        },
+        {
+          email: "usuariotest@gmail.com",
+          password: "usuario",
+        },
+      ],
+
+      setEmail: (email) => set({ email }),
+      setPassword: (password) => set({ password }),
+
 
       login: () => {
-        set((state) => {
-          const username = state.username.trim();
+        const { email, password, users } = get();
 
-          if (!/^[A-Za-zÑñ]+$/.test(username)) {
-            return {
-              error: "Username can only contain letters.",
-            };
-          }
+        const userExists = users.some(
+          (user) =>
+            user.email === email && user.password === password
+        );
 
-          // Minimum length
-          if (username.length < 3) {
-            return {
-              error: "Username must be at least 3 characters.",
-            };
-          }
+        if (!userExists) {
+          set({
+            error: "Email o contraseña incorrectos",
+            isLoggedIn: false,
+          });
 
-          // Maximum length
-          if (username.length > 15) {
-            return {
-              error: "Username must be 15 characters or fewer.",
-            };
-          }
+          return false;
+        }
 
-
-          return {
-            username,
-            isLoggedIn: true,
-          };
+        set({
+          isLoggedIn: true,
+          error: "",
+          password: "",
         });
+
+        return true;
       },
 
       logout: () => {
         set({
-          username: "",
+          email: "",
+          password: "",
           isLoggedIn: false,
+          error: "",
         });
       },
     }),

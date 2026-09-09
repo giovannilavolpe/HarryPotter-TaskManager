@@ -1,11 +1,13 @@
 import '../../context/ContextAuth'
-import { useUsernameStore} from '../../context/ContextAuth'
+import { useAccountStore} from '../../context/ContextAuth'
 
 function Auth() {
-  const username = useUsernameStore((state) => state.username)
-  const setUsername = useUsernameStore((state) => state.setusername)
-  const login = useUsernameStore((state) => state.login)
-  const error = useUsernameStore((state) => state.error);
+  const email = useAccountStore((state) => state.email)
+  const setEmail = useAccountStore((state) => state.setEmail)
+  const password = useAccountStore((state) => state.password)
+  const setPassword = useAccountStore((state) => state.setPassword)
+  const login = useAccountStore((state) => state.login)
+  const error = useAccountStore((state) => state.error);
 
 
   return(
@@ -22,17 +24,15 @@ function Auth() {
         }}>Log in to get started</h2>
         <input
                 type="text"
-                placeholder="Ingrese su nombre"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                style={{
-                  border: 'none',
-                  borderRadius: '5px',
-                  boxShadow: '0px 1px 8px rgba(255, 255, 255, 0.6)',
-                  width: '250px',
-                  height: '30px'
-                }}
-
+                placeholder="username"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+                type="text"
+                placeholder="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
             />
             {error && <p style={{ color: 'white' }}>{error}</p>}
         <button onClick={login} style={{

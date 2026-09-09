@@ -1,7 +1,7 @@
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
-import { useUsernameStore } from "./context/ContextAuth";
+import { useAccountStore } from "./context/ContextAuth";
 import Auth from "./pages/auth/Auth";
 import HomeScreen from './pages/homescreen/HomeScreen';
 import { CharacterDetailsCardList } from "./components/CardsDetails";
@@ -10,8 +10,8 @@ import { useSettingStore } from "./context/ContextSettings";
 
 
 export default function App (){
+    const isLoggedIn = useAccountStore((state) => state.isLoggedIn);
     const {backgroundTheme} = useSettingStore()
-    const isLoggedIn = useUsernameStore((state) => state.isLoggedIn);
     return(
         <div id = "containterAll" className={backgroundTheme}>
         <BrowserRouter>
