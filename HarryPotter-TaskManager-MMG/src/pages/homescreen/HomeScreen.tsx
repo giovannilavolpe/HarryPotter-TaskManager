@@ -1,10 +1,12 @@
 import { CharacterCardList } from "../../components/Cards";
+import SearchBar from "../../components/SearchBar";
 
-function HomeScreen() {
+export default function HomeScreen (){
 
-    return (
+    return(
+    <>
+        <SearchBar/>
         <CharacterCardList/>
+    </>
     )
 }
-
-export default HomeScreen

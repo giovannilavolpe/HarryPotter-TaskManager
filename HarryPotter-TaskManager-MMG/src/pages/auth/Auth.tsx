@@ -1,24 +1,83 @@
+import {useRef } from 'react'
 import '../../context/ContextAuth'
-import { useUsernameStore} from '../../context/ContextAuth'
+import { useAccountStore} from '../../context/ContextAuth'
+import { useSettingStore } from '../../context/ContextSettings'
 
 function Auth() {
-  const username = useUsernameStore((state) => state.username)
-  const setUsername = useUsernameStore((state) => state.setusername)
-  const login = useUsernameStore((state) => state.login)
-  const error = useUsernameStore((state) => state.error);
+  const email = useAccountStore((state) => state.email)
+  const setEmail = useAccountStore((state) => state.setEmail)
+  const password = useAccountStore((state) => state.password)
+  const setPassword = useAccountStore((state) => state.setPassword)
+  const login = useAccountStore((state) => state.login)
+  const error = useAccountStore((state) => state.error);
+  const {backgroundTheme, borderTheme} = useSettingStore();
+  const userNameInput = useRef<HTMLInputElement | null>(null);
 
+  function loginHandler() {
+    login();
+    userNameInput.current?.focus();
+  }
 
   return(
-    <div>
-        <h2>Log in to get Started</h2>
-        <input
-                type="text"
-                placeholder="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+    <div style={{
+      background: 'linear-gradient(#000000, #840303)',
+      height: '95vh',
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center"
+
+    }}>
+        <h2 style={{
+          color: 'white',
+          fontSize: '40px',
+          fontFamily: 'cursive',
+          letterSpacing: '5px'
+        }}>Log in to get started</h2>
+          <div style={{
+            display: "flex",
+            flexDirection:"column",
+            alignSelf: 'center',
+            alignItems: "center"
+
+        }}>
+        <input  className= {backgroundTheme}
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                ref = {userNameInput}
+                style={{
+                  margin: "1rem 0rem",
+                  padding: "1rem",
+                  borderRadius: "1rem"
+                }}
             />
-            {error && <p className="error">{error}</p>}
-        <button onClick={login}>Log in</button>
+        <input
+                className= {backgroundTheme}
+                type="password" 
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                style={{
+                  margin: "1rem 0rem",
+                  padding: "1rem",
+                  borderRadius: "1rem"
+                }}
+            />
+            {error && <p style={{ color: 'white' }}>{error}</p>}
+        <button onClick={() => loginHandler()} 
+                className= {borderTheme}
+                style={{
+                  border: 'none',
+                  borderRadius: '5px',
+                  boxShadow: '0px 1px 8px rgba(255, 255, 255, 0.6)',
+                  width: '80px',
+                  height: '32px',
+                  margin: "1rem 0rem",
+                }}>Log in</button>
+          
+          </div>
 
 
     </div>

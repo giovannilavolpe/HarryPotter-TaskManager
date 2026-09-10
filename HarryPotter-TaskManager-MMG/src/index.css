@@ -1,3 +1,47 @@
 body {
+  margin: 0;
   background-color: black;
+}
+.dark {
+  background-color: black;
+  transition-duration: 1s;
+  color:white;
+}
+.light{
+  background-color: rgb(170, 170, 169);
+  transition-duration: 1s;
+  color: black;
+}
+.dark * {
+  transition-duration: 1s;
+  color:white;
+}
+.light *{
+  transition-duration: 1s;
+  color: black;
+}
+.gryffindor {
+  background: linear-gradient(0deg, rgb(99, 0, 0), rgba(34, 33, 33, 0));
+  border: 1px solid rgb(99, 0, 0)
+} 
+
+.ravenclaw {
+  background: linear-gradient(0deg, rgb(0, 41, 99), rgba(34, 33, 33, 0));
+  border: 1px solid rgb(0, 41, 99);
+} 
+.hufflepuff {
+  background: linear-gradient(0deg, rgb(181, 151, 0), rgb(34, 33, 33, 0));
+  border: 1px solid rgb(181, 151, 0);
+} 
+.slytherin {
+  background: linear-gradient(0deg, rgb(18, 99, 0), rgb(34, 33, 33, 0));
+  border: 1px solid rgb(18, 99, 0);
+
+
+} 
+
+.default {
+  background: linear-gradient(0deg, white, black);
+  border: 1px solid rgb(255, 255, 255);
+
 }
